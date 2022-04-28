@@ -12,4 +12,5 @@ def get_definition(request, file_name):
     return f"По вашему запросу ничего не найдено, могу предложить:\n- {temp}"
 
 
-print(get_definition(input('Введите термин: ').lower(), 'files_for_ex2/Dictionary.csv'))
+if __name__ == '__main__':
+    print(get_definition(input('Введите термин: ').lower(), 'files_for_ex2/Dictionary.csv'))

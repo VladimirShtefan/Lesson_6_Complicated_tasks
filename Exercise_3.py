@@ -25,4 +25,7 @@ def sort_students(base_list, file_name_good_students, file_name_bad_students):
 
 
 if __name__ == '__main__':
-    sort_students(read_base_students('dict_students.csv'), 'files_for_ex3/passed.txt', 'files_for_ex3/failed.txt')
+    try:
+        sort_students(read_base_students('dict_students.csv'), 'files_for_ex3/passed.txt', 'files_for_ex3/failed.txt')
+    except FileNotFoundError:
+        print('Нет файла с данными о студентах')

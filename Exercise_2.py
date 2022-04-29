@@ -13,4 +13,7 @@ def get_definition(request, file_name):
 
 
 if __name__ == '__main__':
-    print(get_definition(input('Введите термин: ').lower(), 'files_for_ex2/Dictionary.csv'))
+    try:
+        print(get_definition(input('Введите термин: ').lower(), 'files_for_ex2/Dictionary.csv'))
+    except FileNotFoundError:
+        print('Нет файла с терминами')

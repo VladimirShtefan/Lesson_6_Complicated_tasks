@@ -1,17 +1,41 @@
 def read_file_with_todo_list(name_file):
+    """
+
+    Args:
+        name_file: путь к файлу с задачами
+
+    Returns: словарь с задачами
+
+    """
     dict_todo_list = {}
     with open(name_file) as file:
         for line in file:
             key, value = line.split(':')
-            dict_todo_list[key] = value.replace('\n', '')
+            dict_todo_list[key] = value.rstrip()
         return dict_todo_list
 
 
 def count_len_list(dict_todo):
+    """
+
+    Args:
+        dict_todo: словарь с задачами
+
+    Returns: сообщение с кол-вом дел
+
+    """
     return print(f'В списке {len(dict_todo)} дел')
 
 
 def count_len_todo_list(dict_todo):
+    """
+
+    Args:
+        dict_todo: словарь с задачами
+
+    Returns: сообщение сколько сделано дел из общего кол-ва
+
+    """
     count_todo = 0
     for value in dict_todo.values():
         if 'to_do' in value.lower():
@@ -22,6 +46,14 @@ def count_len_todo_list(dict_todo):
 
 
 def check_done_tasks(dict_todo):
+    """
+
+    Args:
+        dict_todo: словарь с задачами
+
+    Returns: словарь с делами после опроса пользователя
+
+    """
     for key, value in dict_todo.items():
         if 'done' in value.lower():
             print(f'{key} - сделано? (y/n)')
@@ -32,12 +64,21 @@ def check_done_tasks(dict_todo):
 
 
 def write_dict_todo_in_file(file_name, dict_todo):
+    """
+
+    Args:
+        file_name: путь к фаилу для записи дел
+        dict_todo: словарь с делами
+
+    Returns:
+
+    """
     with open(file_name, 'w') as file:
         for key, value in dict_todo.items():
             file.write(f'{key}:{value}\n')
 
 
-if __name__ == '__main__':
+def main():
     dict_with_todo_list = read_file_with_todo_list('files_for_ex6/todo.txt')
     count_len_list(dict_with_todo_list)
     print(count_len_todo_list(dict_with_todo_list))
@@ -45,3 +86,7 @@ if __name__ == '__main__':
         print('Давай пройдемся по твоим делам!')
     write_dict_todo_in_file('files_for_ex6/todo.txt', check_done_tasks(dict_with_todo_list))
     print('Список дел обновлен, смотри файл')
+
+
+if __name__ == '__main__':
+    main()
